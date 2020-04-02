@@ -36,16 +36,16 @@ class CNode {
     nHeaderStart = vSend.size();
     vSend << CMessageHeader(pszCommand, 0);
     nMessageStart = vSend.size();
-//    printf("%s: SEND %s\n", ToString(you).c_str(), pszCommand); 
+//    printf("%s: SEND %s\n", ToString(you).c_str(), pszCommand);
   }
-  
+
   void AbortMessage() {
     if (nHeaderStart == -1) return;
     vSend.resize(nHeaderStart);
     nHeaderStart = -1;
     nMessageStart = -1;
   }
-  
+
   void EndMessage() {
     if (nHeaderStart == -1) return;
     unsigned int nSize = vSend.size() - nMessageStart;
@@ -60,7 +60,7 @@ class CNode {
     nHeaderStart = -1;
     nMessageStart = -1;
   }
-  
+
   void Send() {
     if (sock == INVALID_SOCKET) return;
     if (vSend.empty()) return;
@@ -72,7 +72,7 @@ class CNode {
       sock = INVALID_SOCKET;
     }
   }
-  
+
   void PushVersion() {
     int64 nTime = time(NULL);
     uint64 nLocalNonce = GULDEN_SEED_NONCE;
@@ -80,11 +80,11 @@ class CNode {
     CAddress me(CService("0.0.0.0"));
     BeginMessage("version");
     int nBestHeight = GetRequireHeight();
-    string ver = "/gulden-seeder:2.1/";
+    string ver = "/gulden-seeder:2.2/";
     vSend << PROTOCOL_VERSION << nLocalServices << nTime << you << me << nLocalNonce << ver << nBestHeight;
     EndMessage();
   }
- 
+
   void GotVersion() {
     // printf("\n%s: version %i\n", ToString(you).c_str(), nVersion);
     if (vAddr) {
