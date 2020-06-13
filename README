@@ -1,7 +1,7 @@
-gulden-seeder
+Novocurrency-seeder
 ==============
 
-Gulden-seeder is a crawler for the Gulden network, which exposes a list
+Novocurrency-seeder is a crawler for the Novocurrency network, which exposes a list
 of reliable nodes via a built-in DNS server.
 
 Features:
@@ -69,10 +69,10 @@ ____
 For a more robust/permanent setup - that auto starts on server reboot.
 
 1) Modify variables in dnsseed_service.sh
-2) sudo cp dnsseed_service.sh /etc/init.d/guldendnsseed
-3) sudo chmod +x /etc/init.d/guldendnsseed
-4) sudo service guldendnsseed start
-5) sudo update-rc.d guldendnsseed defaults
+2) sudo cp dnsseed_service.sh /etc/init.d/novodnsseed
+3) sudo chmod +x /etc/init.d/novodnsseed
+4) sudo service novodnsseed start
+5) sudo update-rc.d novodnsseed defaults
 
 ADDITIONAL SETUP
 ________________
@@ -111,17 +111,17 @@ sudo ufw allow 53 && sudo ufw allow 5454 && sudo ufw allow 5455 && sudo ufw relo
 
 
 Set up init scripts:
-sudo cp dnsseed_service.sh /etc/init.d/guldendns
-sudo cp dnsseed_service.sh /etc/init.d/guldendnstestnet
+sudo cp dnsseed_service.sh /etc/init.d/novodns
+sudo cp dnsseed_service.sh /etc/init.d/novodnstestnet
 
 
 Configure init scripts:
-Open guldendns script and set the variables in it.
+Open novodns script and set the variables in it.
 PREFIX1=seed
 PREFIX2=vps
 PORT=5454
 URL=example.com
-Open guldendnstestnet and set the variables in it.
+Open novodnstestnet and set the variables in it.
 PREFIX1=testseed
 PREFIX2=testvps
 PORT=5455

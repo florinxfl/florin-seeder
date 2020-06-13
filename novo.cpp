@@ -6,7 +6,7 @@
 #include "serialize.h"
 #include "uint256.h"
 
-#define GULDEN_SEED_NONCE  0x0539a019ca550825ULL
+#define NOVO_SEED_NONCE  0x0539a019ca550825ULL
 
 using namespace std;
 
@@ -75,12 +75,12 @@ class CNode {
 
   void PushVersion() {
     int64 nTime = time(NULL);
-    uint64 nLocalNonce = GULDEN_SEED_NONCE;
+    uint64 nLocalNonce = NOVO_SEED_NONCE;
     int64 nLocalServices = 0;
     CAddress me(CService("0.0.0.0"));
     BeginMessage("version");
     int nBestHeight = GetRequireHeight();
-    string ver = "/gulden-seeder:2.2/";
+    string ver = "/novocurrency-seeder:1.0/";
     vSend << PROTOCOL_VERSION << nLocalServices << nTime << you << me << nLocalNonce << ver << nBestHeight;
     EndMessage();
   }

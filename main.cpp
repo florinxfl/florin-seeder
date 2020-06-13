@@ -10,7 +10,7 @@
 #include <atomic>
 #include <iostream>
 #include <fstream>
-#include "gulden.h"
+#include "novo.h"
 #include "db.h"
 
 using namespace std;
@@ -36,7 +36,7 @@ public:
   CDnsSeedOpts() : nThreads(96), nDnsThreads(4), nPort(53), mbox(NULL), ns(NULL), host(NULL), tor(NULL), fUseTestNet(false), fWipeBan(false), fWipeIgnore(false), ipv4_proxy(NULL), ipv6_proxy(NULL) {}
 
   void ParseCommandLine(int argc, char **argv) {
-    static const char *help = "gulden-seeder\n"
+    static const char *help = "novocurrency-seeder\n"
                               "Usage: %s -h <host> -n <ns> [-m <mbox>] [-t <threads>] [-p <port>]\n"
                               "\n"
                               "Options:\n"
@@ -204,7 +204,7 @@ extern "C" void* ThreadStaticIps(void* data) {
 	while (std::getline(fStaticIPs4, line))
 	{
 	    std::istringstream iss(line);
-            db.Add(CAddress(CService(line+":9231"), true));
+            db.Add(CAddress(CService(line+":9233"), true));
 	    //printf("%s", line.c_str());
 	}
     }
@@ -215,7 +215,7 @@ extern "C" void* ThreadStaticIps(void* data) {
         while (std::getline(fStaticIPs6, line))
         {
             std::istringstream iss(line);
-            db.Add(CAddress(CService(line+":9231"), true));
+            db.Add(CAddress(CService(line+":9233"), true));
         }
     }
 
@@ -427,22 +427,20 @@ extern "C" void* ThreadStats(void*) {
   return nullptr;
 }
 
-static const string mainnet_seeds[] = {"seed.gulden.network"
-                                        , "seed.gulden.com"
-                                        , "amsterdam.gulden.com"
+static const string mainnet_seeds[] = {"seed1.novocurrency.com"
+                                        , "seed2.novocurrency.com"
                                         , ""
                                         };
 static const string testnet_seeds[] = {
-                                        "testseed.gulden.network"
-                                        , "testseed.gulden.blue"
-                                        , "testseed.coinpool.nl"
+                                        "testseed1.novocurrency.com"
+                                        , "testseed2.novocurrency.com"
                                         , ""
                                        };
 static const string *seeds = mainnet_seeds;
 
 extern "C" void* ThreadSeeder(void*) {
   if (!fTestNet){
-    db.Add(CService("kjy2eqzk4zwi5zd3.onion", 9231), true);
+    db.Add(CService("kjy2eqzk4zwi5zd3.onion", 9233), true);
   }
   do {
     for (int i=0; seeds[i] != ""; i++) {
