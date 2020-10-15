@@ -13,7 +13,7 @@
 #define MIN_RETRY 1000
 
 // Don't list clients with a version older than this in dns queries, but continue to record them.
-#define REQUIRE_VERSION 70017
+#define REQUIRE_VERSION 70018
 
 static inline int GetRequireHeight(const bool testnet = fTestNet)
 {
